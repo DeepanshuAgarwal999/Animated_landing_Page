@@ -1,10 +1,21 @@
+"use client"
 import productImage from '@/assets/product-image.png'
 import Image from 'next/image';
 import pyramidImg from '@/assets/pyramid.png'
 import tubeimg from '@/assets/tube.png'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react';
+
 export const ProductShowcase = () => {
+  const productShowcaseRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: productShowcaseRef,
+    offset: ["start end", "end start"]
+  })
+  const translateY = useTransform(scrollYProgress, [0, 1], [150, -150])
+
   return (
-    <section className='bg-gradient-to-b from-[#ffffff] to-[#D2DCFF] py-24 overflow-x-clip'>
+    <section ref={productShowcaseRef} className='bg-gradient-to-b from-[#ffffff] to-[#D2DCFF] py-24 overflow-x-clip'>
       <div className="container">
 
         <div className='max-w-[540px] mx-auto'>
@@ -20,8 +31,16 @@ export const ProductShowcase = () => {
         </div>
         <div className='relative'>
           <Image src={productImage} alt='productImage' className='mt-10' />
-          <Image src={pyramidImg} alt='pyramidimg' className='hidden md:block absolute -right-36 -top-32' height={262} width={262} />
-          <Image src={tubeimg} alt='tube img' className='hidden md:block absolute -left-36 bottom-24' height={262} width={262} />
+          <motion.img src={pyramidImg.src}
+            style={{
+              translateY: translateY
+            }}
+            alt='pyramidimg' className='hidden md:block absolute -right-36 -top-32' height={262} width={262} />
+          <motion.img
+            style={{
+              translateY: translateY
+            }}
+            src={tubeimg.src} alt='tube img' className='hidden md:block absolute -left-36 bottom-24' height={262} width={262} />
         </div>
       </div>
 

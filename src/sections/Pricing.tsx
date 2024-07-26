@@ -1,7 +1,9 @@
+"use client"
 import { pricingTiers } from '@/constants/pricingTiers'
 import CheckIcon from '@/assets/check.svg'
 import React from 'react'
 import { cn } from '@/lib/cn'
+import { motion } from 'framer-motion'
 
 export const Pricing = () => {
   return (
@@ -26,7 +28,17 @@ export const Pricing = () => {
                 <h3 className={cn('text-lg font-bold text-black/50 ', inverse && "text-white/60")}>{title}</h3>
                 {popular && (
                   <div className='inline-flex text-sm px-4 py-1.5 rounded-xl border border-white/20 '>
-                    <span className='bg-[linear-gradient(to_right,#DD7DDf,#E1CD86,#BBCB92,#71C2EF,#3BFFFF,#DD7DDF)] bg-clip-text text-transparent'>Popular</span>
+                    <motion.span
+                      animate={{
+                        backgroundPositionX: "-100%"
+                      }}
+                      transition={{
+                        duration: 1,
+                        repeat: Infinity,
+                        ease: "linear",
+                        repeatType: "loop"
+                      }}
+                      className='bg-[linear-gradient(to_right,#DD7DDf,#E1CD86,#BBCB92,#71C2EF,#3BFFFF,#DD7DDF,#E1CD86,#BBCB92,#71C2EF,#3BFFFF)] [background-size:200%] bg-clip-text text-transparent'>Popular</motion.span>
                   </div>
                 )}
               </div>
