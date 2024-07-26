@@ -12,8 +12,8 @@ const TestimonialsColumn = (props: { testimonials: typeof testimonials, classNam
   return (
     <div className={cn('flex flex-col gap-6 mt-10  [mask-image:linear-gradient(to_bottom,transparent,black_25%,black_75%,transparent)]', props.className)}>
       {
-        props.testimonials.map(({ text, imageSrc, name, username }) => (
-          <div className='card'>
+        props.testimonials.map(({ text, imageSrc, name, username }, i) => (
+          <div className='card' key={i}>
             <div>{text}</div>
             <div className='flex items-center gap-2 mt-5'>
               <Image src={imageSrc} alt={name} width={40} height={40} className='size-8 rounded-full' />

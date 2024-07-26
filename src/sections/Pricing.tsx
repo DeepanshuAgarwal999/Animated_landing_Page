@@ -37,7 +37,7 @@ export const Pricing = () => {
               <button className={cn('btn btn-primary w-full mt-[30px]', inverse && "bg-white text-black")}>{buttonText}</button>
               <ul className='flex flex-col gap-5 mt-8'>
                 {features.map((feature) => (
-                  <li className='text-sm flex items-center gap-4'>
+                  <li className='text-sm flex items-center gap-4' key={feature}>
                     <CheckIcon className="size-6" />
                     <span>{feature}</span>
                   </li>
